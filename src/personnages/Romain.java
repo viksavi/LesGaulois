@@ -6,6 +6,7 @@ public class Romain {
 	
 	public Romain(String nom, int force) {
 		this.nom = nom;
+		assert isInvariantSatisfied();
 		this.force = force;
 	}
 
@@ -28,5 +29,15 @@ public class Romain {
 		} else {
 			parler("J'abandonne...");
 		}
+	}
+	
+	private boolean forceEstPositive()
+	{
+		return force>0;
+	}
+	
+	private boolean isInvariantSatisfied()
+	{
+		return forceEstPositive();
 	}
 }
