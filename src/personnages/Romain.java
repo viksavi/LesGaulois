@@ -35,6 +35,7 @@ public class Romain {
 	 * 
 	 * assert isPostConditionSatisfied(forceInit, force); }
 	 */
+	
 	public Equipement[] recevoirCoup(int forceCoup) {
 		Equipement[] equipementEjecte = null;
 		// précondition
@@ -92,21 +93,12 @@ public class Romain {
 
 
 	private boolean forceEstPositive() {
-		if (force > 0) {
-			return true;
-		}
-		else {
-			return false;
-		}
+		return (force > 0);
 	}
 	
 	private boolean forceDiminue(int forceInit, int forceApres)
 	{
-		if (forceApres < forceInit) {
-			return true;
-		} else {
-			return false;
-		}
+		return (forceApres < forceInit);
 	}
 	
 	private void ajouterEquipement(Equipement equipement, int num)
