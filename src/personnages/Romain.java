@@ -18,6 +18,10 @@ public class Romain {
 	public String getNom() {
 		return nom;
 	}
+	
+	public int getForce() {
+		return force;
+	}
 
 	public void parler(String texte) {
 		System.out.println(prendreParole() + "« " + texte + "»");
@@ -26,22 +30,13 @@ public class Romain {
 	public String prendreParole() {
 		return "Le romain " + nom + " : ";
 	}
-
-	/*
-	 * public void recevoirCoup(int forceCoup) { assert isPreconditionSatisfied();
-	 * 
-	 * int forceInit = force; force -= forceCoup; if (force > 0) { parler("Aïe"); }
-	 * else { parler("J'abandonne..."); }
-	 * 
-	 * assert isPostConditionSatisfied(forceInit, force); }
-	 */
 	
 	public Equipement[] recevoirCoup(int forceCoup) {
 		Equipement[] equipementEjecte = null;
 		// précondition
 		assert force > 0;
 		int oldForce = force;
-		forceCoup = CalculResistanceEquipement(forceCoup);
+		forceCoup = calculResistanceEquipement(forceCoup);
 		force -= forceCoup;
 		
 		if (force == 0) {
@@ -63,10 +58,11 @@ public class Romain {
 			texte += "\nMais heureusement, grace à mon équipement sa force est diminué de ";
 			for (int i = 0; i < nbEquipement; i++) {
 				if ((equipements[i] != null && equipements[i].equals(Equipement.BOUCLIER))) {
+					System.out.println("Equipement bouclier");
 					resistanceEquipement += 8;
-				} else {
+				} else if(equipements[i] != null && equipements[i].equals(Equipement.CASQUE)) {
 					System.out.println("Equipement casque");
-					resistanceEquipement += 5;
+					resistanceEquipement += 5;				
 				}
 			}
 			texte += resistanceEquipement + "!";
@@ -85,6 +81,7 @@ public class Romain {
 				equipementEjecte[nbEquipementEjecte] = equipements[i];
 				nbEquipementEjecte++;
 				equipements[i] = null;
+				nbEquipement--;
 			}
 		}
 		return equipementEjecte;
@@ -96,11 +93,6 @@ public class Romain {
 		return (force > 0);
 	}
 	
-	private boolean forceDiminue(int forceInit, int forceApres)
-	{
-		return (forceApres < forceInit);
-	}
-	
 	private void ajouterEquipement(Equipement equipement, int num)
 	{
 		this.equipements[num] = equipement;
@@ -108,7 +100,7 @@ public class Romain {
 		System.out.println("Le soldat " + nom + " s’équipe avec un " + equipement.toString() + "!");
 	}
 	
-	private void sEquiper(Equipement equipement)
+	public void sEquiper(Equipement equipement)
 	{
 		switch (nbEquipement) {
 		case 2: {
@@ -130,16 +122,6 @@ public class Romain {
 
 	private boolean isInvariantSatisfied() {
 		return forceEstPositive();
-	}
-	
-	private boolean isPreconditionSatisfied()
-	{
-		return forceEstPositive();
-	}
-	
-	private boolean isPostConditionSatisfied(int force1, int force2)
-	{
-		return forceDiminue(force1, force2);
 	}
 	
 	public static void main(String[] args) {
