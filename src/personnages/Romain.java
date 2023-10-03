@@ -81,9 +81,9 @@ public class Romain {
 				equipementEjecte[nbEquipementEjecte] = equipements[i];
 				nbEquipementEjecte++;
 				equipements[i] = null;
-				nbEquipement--;
 			}
 		}
+		nbEquipement = 0;
 		return equipementEjecte;
 		}
 
