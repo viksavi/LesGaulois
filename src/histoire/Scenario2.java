@@ -32,6 +32,6 @@ public class Scenario2 {
 		
 		Musee musee = new Musee();
 		asterix.faireUneDonnation(musee);
-		
+		System.out.println(musee.extraireInstructionsCaml());
 	}
 }

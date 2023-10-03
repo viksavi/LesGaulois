@@ -5,7 +5,6 @@ public class Romain {
 	private int force;
 	private Equipement[] equipements;
 	private int nbEquipement = 0;
-	
 
 	public Romain(String nom, int force) {
 		this.nom = nom;
@@ -86,8 +85,6 @@ public class Romain {
 		nbEquipement = 0;
 		return equipementEjecte;
 		}
-
-
 
 	private boolean forceEstPositive() {
 		return (force > 0);
